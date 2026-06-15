@@ -87,7 +87,7 @@ function QueueInner() {
         </TabButton>
       </div>
 
-      <div className="no-scrollbar -mx-5 mt-4 flex gap-3 overflow-x-auto px-5">
+      <div className="no-scrollbar mt-4 flex gap-3 overflow-x-auto pb-2">
         {tab === "new"
           ? NEW_LANES.map((lane) => (
               <Column

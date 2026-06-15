@@ -16,7 +16,7 @@ This repository is the interactive prototype that accompanies the Astro case stu
 4. **Worksheet** — document each component with **barcode verification** and photo evidence.
 5. **Verification** — the pharmacist **approves** (released for pickup) or **rejects** (returned to the technician with a reason).
 
-You can switch roles mid-flow to experience both sides of the verification handoff. Start at `/` for the context intro, or `/about` for the information architecture and flows.
+You can switch roles mid-flow to experience both sides of the verification handoff. The app is responsive for desktop and tablet.
 
 ## Stack
 

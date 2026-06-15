@@ -1,83 +1,116 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, GitBranch } from "lucide-react";
-import { DeviceFrame } from "@/components/DeviceFrame";
-import { StatusBar } from "@/components/StatusBar";
+import { Mail, Lock, ArrowRight } from "lucide-react";
+import { useAstro } from "@/lib/store";
+import type { Role } from "@/lib/types";
 
-export default function IntroPage() {
+const CREDS: Record<Role, string> = {
+  RPH: "k.osei@stmarys-health.org",
+  TECH: "l.romero@stmarys-health.org",
+};
+
+export default function LoginPage() {
   const router = useRouter();
+  const { login, resetDemo } = useAstro();
+  const [role, setRole] = useState<Role>("RPH");
+
+  // Clean slate whenever someone lands on the sign-in screen.
+  useEffect(() => {
+    resetDemo();
+  }, [resetDemo]);
+
+  function signIn(e: React.FormEvent) {
+    e.preventDefault();
+    login(role, "");
+    router.push(role === "RPH" ? "/home" : "/queue");
+  }
 
   return (
-    <DeviceFrame>
-      <StatusBar />
-      <main className="no-scrollbar flex-1 overflow-y-auto px-7 pb-10">
-        <div className="pt-6">
-          <div className="text-3xl font-bold tracking-tight text-primary">
-            Astro
-          </div>
-          <p className="mt-1 text-sm text-muted">
-            The operational layer between the EMR order and the compounding
-            bench.
-          </p>
-          <span className="mt-3 inline-flex w-fit items-center rounded-md bg-primary-tint px-2 py-0.5 text-xs font-medium text-primary">
-            Interactive prototype
-          </span>
-        </div>
-
-        <section className="mt-7">
-          <h2 className="text-xs font-semibold uppercase tracking-wide text-faint">
-            The problem
-          </h2>
-          <p className="mt-2 text-[15px] leading-relaxed text-ink">
-            A sterile IV order travels between two well-built systems — the{" "}
-            <span className="font-medium">EMR</span> that captures it and the{" "}
-            <span className="font-medium">cleanroom hood</span>{" "}
-            where it&apos;s compounded. The operational middle between them
-            belongs to no
-            system. It&apos;s run on whiteboards, paper, and memory — and
-            it&apos;s where orders get lost and verification happens from recall.
-          </p>
-        </section>
-
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/diagram-unowned-middle.svg"
-          alt="A compound order flows from the EMR, through an operational middle that no system owns, to the cleanroom hood."
-          className="mt-5 w-full rounded-card border border-line p-2"
-        />
-
-        <section className="mt-6 rounded-card bg-primary-tint/60 p-4">
-          <h2 className="text-xs font-semibold uppercase tracking-wide text-primary">
-            The bet
-          </h2>
-          <p className="mt-1.5 text-[15px] leading-relaxed text-ink">
-            Own that middle, as a companion to the EMR — and the{" "}
-            <span className="font-medium">accountable path becomes the fast
-            path.</span> Astro carries every order from queue to pickup: owned,
+    <div className="flex min-h-screen">
+      {/* Brand panel — desktop only */}
+      <div className="hidden w-1/2 flex-col justify-between bg-primary p-12 text-white lg:flex xl:p-16">
+        <div className="text-2xl font-bold tracking-tight">Astro</div>
+        <div>
+          <h1 className="text-4xl font-semibold leading-tight">
+            Sterile compounding,
+            <br />
+            owned end to end.
+          </h1>
+          <p className="mt-4 max-w-md text-white/70">
+            From the EMR order to the cleanroom bench — every dose owned,
             tracked, documented, and verified.
           </p>
-        </section>
+        </div>
+        <div className="text-xs text-white/50">
+          Interactive prototype · mock data, no PHI
+        </div>
+      </div>
 
-        <button
-          onClick={() => router.push("/start")}
-          className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-3.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
-        >
-          Explore the prototype
-          <ArrowRight size={18} />
-        </button>
-        <button
-          onClick={() => router.push("/about")}
-          className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg border border-line py-3 text-sm font-medium text-muted transition-colors hover:bg-canvas"
-        >
-          <GitBranch size={16} />
-          See the IA &amp; flows
-        </button>
+      {/* Sign-in form */}
+      <div className="flex w-full flex-col justify-center px-6 py-12 lg:w-1/2">
+        <div className="mx-auto w-full max-w-sm">
+          <div className="mb-10 text-2xl font-bold tracking-tight text-primary lg:hidden">
+            Astro
+          </div>
 
-        <p className="mt-6 text-center text-xs text-faint">
-          A portfolio prototype by Gerardo Vinces · mock data, no PHI
-        </p>
-      </main>
-    </DeviceFrame>
+          <h2 className="text-2xl font-semibold text-ink">Sign in</h2>
+          <p className="mt-1 text-sm text-muted">
+            Welcome back. Choose your role to continue.
+          </p>
+
+          <div className="mt-6 grid grid-cols-2 gap-1 rounded-lg bg-canvas p-1">
+            {(["RPH", "TECH"] as Role[]).map((r) => (
+              <button
+                key={r}
+                type="button"
+                onClick={() => setRole(r)}
+                className={`rounded-md py-2 text-sm font-medium transition-colors ${
+                  role === r
+                    ? "bg-surface text-primary shadow-card"
+                    : "text-muted hover:text-ink"
+                }`}
+              >
+                {r === "RPH" ? "Pharmacist" : "Technician"}
+              </button>
+            ))}
+          </div>
+
+          <form onSubmit={signIn} className="mt-5 flex flex-col gap-3">
+            <label className="flex items-center gap-2 rounded-lg border border-line px-3 py-2.5">
+              <Mail size={17} className="text-faint" />
+              <input
+                type="email"
+                value={CREDS[role]}
+                readOnly
+                className="w-full bg-transparent text-sm text-ink outline-none"
+              />
+            </label>
+            <label className="flex items-center gap-2 rounded-lg border border-line px-3 py-2.5">
+              <Lock size={17} className="text-faint" />
+              <input
+                type="password"
+                value="prototype"
+                readOnly
+                className="w-full bg-transparent text-sm text-ink outline-none"
+              />
+            </label>
+            <button
+              type="submit"
+              className="mt-1 flex items-center justify-center gap-2 rounded-lg bg-primary py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
+            >
+              Sign in
+              <ArrowRight size={18} />
+            </button>
+          </form>
+
+          <p className="mt-5 text-xs text-faint">
+            Demo prototype — credentials are illustrative. You can switch roles
+            anytime once inside.
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }

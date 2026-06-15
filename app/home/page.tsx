@@ -19,7 +19,7 @@ export default function HomePage() {
       <h2 className="mt-6 mb-3 text-lg font-medium text-ink">
         Available Cleanrooms
       </h2>
-      <div className="no-scrollbar -mx-5 flex gap-3 overflow-x-auto px-5 pb-1">
+      <div className="no-scrollbar flex gap-3 overflow-x-auto pb-2">
         {CLEANROOMS.map((room) => {
           const joined = session.cleanroomId === room.id;
           const full = room.available === 0;

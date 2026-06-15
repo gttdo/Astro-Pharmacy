@@ -458,7 +458,7 @@ function ActionBar({
   }
 
   return (
-    <div className="sticky bottom-0 -mx-5 mt-6 flex gap-3 border-t border-line bg-surface/95 px-5 py-3 backdrop-blur">
+    <div className="sticky bottom-0 mt-6 flex gap-3 border-t border-line bg-surface/95 py-3 backdrop-blur">
       {content}
     </div>
   );
@@ -503,7 +503,7 @@ function RejectModal({
   const [reason, setReason] = useState("");
 
   return (
-    <div className="absolute inset-0 z-50 flex items-end justify-center bg-black/40 p-4 sm:items-center">
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-4 sm:items-center">
       <div className="w-full max-w-sm rounded-2xl bg-surface p-5 shadow-xl">
         <h3 className="text-lg font-semibold text-ink">Reject preparation</h3>
         <p className="mt-1 text-sm text-muted">
