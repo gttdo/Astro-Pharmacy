@@ -2,6 +2,8 @@
 
 **An internal pharmacy order-management & sterile-compounding workflow — a functional prototype.**
 
+🔗 **Live demo: [astro-pharmacy-flame.vercel.app](https://astro-pharmacy-flame.vercel.app)**
+
 A medication order makes its most dangerous journey in the gap between two well-built systems: the **EMR** that captures it and the **cleanroom hood** where it's compounded. That operational middle — receive → own → compound → verify → ready-for-pickup — is usually run on whiteboards, paper, and memory. Astro owns that middle, as a **companion to the EMR**: it carries every order through a live queue, a documented worksheet, and a pharmacist verification gate so each dose is owned, tracked, documented, and verified.
 
 This repository is the interactive prototype that accompanies the Astro case study by **Gerardo Vinces**. It runs the full signature loop on mock data — no PHI, no backend.
