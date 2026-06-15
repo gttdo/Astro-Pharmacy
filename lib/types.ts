@@ -34,6 +34,9 @@ export interface Component {
   kit?: string;
   manufacturer: string;
   expiration: string;
+  /** Barcode-scanned against the order (NDC verified). The strongest
+   *  evidence-based error check — see Poon 2006/2010 (barcode −85%). */
+  scanned: boolean;
   /** Photos captured as documentation evidence (count). */
   photos: number;
   /** Photos required before this step can be verified. */

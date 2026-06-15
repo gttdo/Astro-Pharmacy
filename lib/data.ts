@@ -22,6 +22,7 @@ function oxaliplatinComponents() {
       kit: "654re",
       manufacturer: "Roche",
       expiration: "09/19/2025",
+      scanned: false,
       photos: 0,
       photosRequired: 1,
     },
@@ -35,6 +36,7 @@ function oxaliplatinComponents() {
       kit: "654re",
       manufacturer: "Roche",
       expiration: "07/02/2025",
+      scanned: false,
       photos: 0,
       photosRequired: 1,
     },
@@ -47,6 +49,7 @@ function oxaliplatinComponents() {
       lot: "P338201",
       manufacturer: "Baxter",
       expiration: "11/20/2025",
+      scanned: false,
       photos: 0,
       photosRequired: 1,
     },
@@ -65,6 +68,7 @@ function vancomycinComponents() {
       kit: "221kd",
       manufacturer: "Hospira",
       expiration: "03/14/2026",
+      scanned: false,
       photos: 0,
       photosRequired: 1,
     },
@@ -77,6 +81,7 @@ function vancomycinComponents() {
       lot: "NS44910",
       manufacturer: "Baxter",
       expiration: "01/09/2026",
+      scanned: false,
       photos: 0,
       photosRequired: 1,
     },
@@ -169,7 +174,7 @@ export function makeInitialTickets(): Ticket[] {
       rph: "K. Osei, PharmD",
       tech: "L. Romero, CPhT",
       components: oxaliplatinComponents().map((c, i) =>
-        i === 0 ? { ...c, photos: 1 } : c
+        i === 0 ? { ...c, scanned: true, photos: 1 } : c
       ),
       dueInMinutes: 22,
       history: [
@@ -190,7 +195,11 @@ export function makeInitialTickets(): Ticket[] {
       cleanroomId: "hd-a",
       rph: "K. Osei, PharmD",
       tech: "L. Romero, CPhT",
-      components: oxaliplatinComponents().map((c) => ({ ...c, photos: 1 })),
+      components: oxaliplatinComponents().map((c) => ({
+        ...c,
+        scanned: true,
+        photos: 1,
+      })),
       dueInMinutes: 9,
       history: [
         { label: "Order received", by: "EHR", at: "8:20 AM" },

@@ -26,7 +26,7 @@ export default function HomePage() {
           return (
             <div
               key={room.id}
-              className="flex w-[240px] shrink-0 flex-col rounded-card border border-line p-4"
+              className="flex w-[240px] shrink-0 flex-col rounded-card border border-line p-4 shadow-card"
             >
               <div className="flex items-start justify-between">
                 <div className="font-semibold text-primary">{room.name}</div>

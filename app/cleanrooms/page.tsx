@@ -25,7 +25,7 @@ export default function CleanroomsPage() {
           return (
             <div
               key={room.id}
-              className={`rounded-card border p-4 ${
+              className={`rounded-card border p-4 shadow-card ${
                 joined ? "border-green bg-green-tint/40" : "border-line"
               }`}
             >

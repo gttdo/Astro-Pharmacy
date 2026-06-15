@@ -10,6 +10,8 @@ import {
   CircleAlert,
   CheckCircle2,
   ArrowLeftRight,
+  ScanLine,
+  ShieldAlert,
 } from "lucide-react";
 import { AppChrome } from "@/components/AppChrome";
 import { Chip, HazardChip } from "@/components/Chip";
@@ -26,6 +28,7 @@ export default function WorksheetPage() {
   const role = useAstro((s) => s.session.role);
   const {
     startCompounding,
+    scanComponent,
     capturePhoto,
     submitForReview,
     approve,
@@ -46,7 +49,11 @@ export default function WorksheetPage() {
 
   const isTech = role === "TECH";
   const editable = isTech && (ticket.status === "in_progress" || ticket.status === "rejected");
-  const allDocumented = ticket.components.every((c) => c.photos >= c.photosRequired);
+  // A component is "documented" only when its barcode is verified AND it's
+  // photographed — verification built into the work, not bolted on after.
+  const allDocumented = ticket.components.every(
+    (c) => c.scanned && c.photos >= c.photosRequired
+  );
 
   return (
     <AppChrome title="Worksheet" back="/queue">
@@ -65,6 +72,17 @@ export default function WorksheetPage() {
           <Field label="MRN" value={ticket.mrn} />
         </div>
       </div>
+
+      {ticket.hazard === "HD" && (
+        <div className="mt-3 flex items-start gap-2 rounded-card border border-hazard/30 bg-hazard-tint/50 p-3 text-xs text-hazard">
+          <ShieldAlert size={16} className="mt-0.5 shrink-0" />
+          <p>
+            <span className="font-semibold">Hazardous drug.</span>{" "}
+            Compound under negative-pressure containment with required PPE (USP
+            &lt;800&gt;).
+          </p>
+        </div>
+      )}
 
       {ticket.status === "rejected" && (
         <Banner tone="danger" icon={<CircleAlert size={18} />}>
@@ -104,6 +122,7 @@ export default function WorksheetPage() {
                 key={c.id}
                 component={c}
                 editable={editable}
+                onScan={() => scanComponent(ticket.id, c.id)}
                 onCapture={() => capturePhoto(ticket.id, c.id)}
               />
             ))}
@@ -191,21 +210,38 @@ function Banner({
 function ComponentCard({
   component: c,
   editable,
+  onScan,
   onCapture,
 }: {
   component: Component;
   editable: boolean;
+  onScan: () => void;
   onCapture: () => void;
 }) {
-  const satisfied = c.photos >= c.photosRequired;
+  const photographed = c.photos >= c.photosRequired;
+  const documented = c.scanned && photographed;
   const slots = Math.max(c.photosRequired, c.photos) + (editable ? 1 : 0);
 
   return (
-    <div className="rounded-card border border-line p-4">
-      <div className="flex items-start justify-between">
-        <div className="font-semibold text-ink">{c.name}</div>
-        {editable && <Trash2 size={16} className="text-faint" />}
+    <div
+      className={`rounded-card border p-4 shadow-card ${
+        documented ? "border-green/40" : "border-line"
+      }`}
+    >
+      <div className="flex items-start justify-between gap-2">
+        <div>
+          <div className="font-semibold text-ink">{c.name}</div>
+          <div className="mt-0.5 text-xs capitalize text-faint">{c.kind}</div>
+        </div>
+        {documented ? (
+          <Chip tone="success">
+            <Check size={12} className="mr-0.5" /> Documented
+          </Chip>
+        ) : (
+          editable && <Trash2 size={16} className="mt-1 text-faint" />
+        )}
       </div>
+
       <div className="mt-3 grid grid-cols-3 gap-x-3 gap-y-3 text-sm">
         <Meta label="Dose" value={c.dose} />
         <Meta label="NDC" value={c.ndc} />
@@ -215,14 +251,37 @@ function ComponentCard({
         <Meta label="Manufacturer" value={c.manufacturer} />
       </div>
 
+      {/* Barcode verification — the strongest evidence-based error check */}
+      <div className="mt-4 rounded-lg bg-canvas/60 p-2.5">
+        {c.scanned ? (
+          <div className="flex items-center gap-2 text-xs font-medium text-green">
+            <ScanLine size={15} />
+            Barcode verified · NDC matches the order
+          </div>
+        ) : editable ? (
+          <button
+            onClick={onScan}
+            className="flex w-full items-center justify-center gap-2 rounded-md border border-primary bg-surface py-2 text-xs font-semibold text-primary transition-colors hover:bg-primary-tint"
+          >
+            <ScanLine size={15} />
+            Scan barcode to verify
+          </button>
+        ) : (
+          <div className="flex items-center gap-2 text-xs font-medium text-faint">
+            <ScanLine size={15} />
+            Not scanned
+          </div>
+        )}
+      </div>
+
       <div className="mt-3 flex items-center justify-between">
-        <span className="text-xs text-muted">Photos</span>
+        <span className="text-xs text-muted">Photo documentation</span>
         <span
           className={`flex items-center gap-1 text-xs font-medium ${
-            satisfied ? "text-green" : "text-faint"
+            photographed ? "text-green" : "text-faint"
           }`}
         >
-          {satisfied && <Check size={13} />}
+          {photographed && <Check size={13} />}
           {c.photos} of {c.photosRequired} required
         </span>
       </div>

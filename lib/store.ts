@@ -17,6 +17,7 @@ interface AstroState {
   leaveCleanroom: () => void;
 
   startCompounding: (ticketId: string) => void;
+  scanComponent: (ticketId: string, componentId: string) => void;
   capturePhoto: (ticketId: string, componentId: string) => void;
   submitForReview: (ticketId: string) => void;
   approve: (ticketId: string) => void;
@@ -72,6 +73,20 @@ export const useAstro = create<AstroState>((set) => ({
                   at: NOW,
                 },
               ],
+            }
+          : t
+      ),
+    })),
+
+  scanComponent: (ticketId, componentId) =>
+    set((s) => ({
+      tickets: s.tickets.map((t) =>
+        t.id === ticketId
+          ? {
+              ...t,
+              components: t.components.map((c) =>
+                c.id === componentId ? { ...c, scanned: true } : c
+              ),
             }
           : t
       ),

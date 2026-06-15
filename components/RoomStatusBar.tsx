@@ -18,7 +18,7 @@ export function RoomStatusBar() {
   const me = session.role === "RPH";
 
   return (
-    <div className="flex divide-x divide-line rounded-card border border-line">
+    <div className="flex divide-x divide-line rounded-card border border-line shadow-card">
       {cell(
         "Joined in:",
         room ? room.name : <span className="text-faint">—</span>
