@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 332" role="img" font-family="Roboto, system-ui, sans-serif">
+  <title>Astro information architecture</title>
+  <desc>Astro is structured around the order lifecycle: a role-aware entry leads to Home, Cleanrooms, the Compounding Queue, and a planned History. The Queue opens the Worksheet, which leads to photo documentation and pharmacist verification.</desc>
+
+  <line x1="340" y1="88" x2="105" y2="120" stroke="#cfcfd6" stroke-width="1.5"/>
+  <line x1="340" y1="88" x2="255" y2="120" stroke="#cfcfd6" stroke-width="1.5"/>
+  <line x1="340" y1="88" x2="415" y2="120" stroke="#cfcfd6" stroke-width="1.5"/>
+  <line x1="340" y1="88" x2="570" y2="120" stroke="#cfcfd6" stroke-width="1.5"/>
+  <line x1="415" y1="170" x2="415" y2="196" stroke="#cfcfd6" stroke-width="1.5"/>
+  <line x1="415" y1="242" x2="360" y2="262" stroke="#cfcfd6" stroke-width="1.5"/>
+  <line x1="415" y1="242" x2="510" y2="262" stroke="#cfcfd6" stroke-width="1.5"/>
+
+  <rect x="270" y="44" width="140" height="44" rx="12" fill="#eef0f8" stroke="#2a3a8c" stroke-width="1.5"/>
+  <text x="340" y="64" text-anchor="middle" fill="#2a3a8c" font-size="15" font-weight="500">Astro</text>
+  <text x="340" y="80" text-anchor="middle" fill="#3a4aa0" font-size="12">sign in · role-aware</text>
+
+  <rect x="40" y="120" width="130" height="50" rx="10" fill="#eef0f8" stroke="#2a3a8c" stroke-width="1.5"/>
+  <text x="105" y="142" text-anchor="middle" fill="#2a3a8c" font-size="14" font-weight="500">Home</text>
+  <text x="105" y="158" text-anchor="middle" fill="#3a4aa0" font-size="12">status · shortcuts</text>
+
+  <rect x="190" y="120" width="130" height="50" rx="10" fill="#eef0f8" stroke="#2a3a8c" stroke-width="1.5"/>
+  <text x="255" y="142" text-anchor="middle" fill="#2a3a8c" font-size="14" font-weight="500">Cleanrooms</text>
+  <text x="255" y="158" text-anchor="middle" fill="#3a4aa0" font-size="12">join / leave</text>
+
+  <rect x="340" y="120" width="150" height="50" rx="10" fill="#eef0f8" stroke="#2a3a8c" stroke-width="1.5"/>
+  <text x="415" y="142" text-anchor="middle" fill="#2a3a8c" font-size="14" font-weight="500">Compounding queue</text>
+  <text x="415" y="158" text-anchor="middle" fill="#3a4aa0" font-size="12">new · in progress</text>
+
+  <rect x="510" y="120" width="120" height="50" rx="10" fill="#f0f0f2" stroke="#9a9aa0" stroke-width="1.5"/>
+  <text x="570" y="142" text-anchor="middle" fill="#5f5f64" font-size="14" font-weight="500">History</text>
+  <text x="570" y="158" text-anchor="middle" fill="#8a8a8f" font-size="12">planned</text>
+
+  <rect x="340" y="196" width="150" height="46" rx="10" fill="#eef0f8" stroke="#2a3a8c" stroke-width="1.5"/>
+  <text x="415" y="216" text-anchor="middle" fill="#2a3a8c" font-size="14" font-weight="500">Worksheet</text>
+  <text x="415" y="232" text-anchor="middle" fill="#3a4aa0" font-size="12">document each step</text>
+
+  <rect x="300" y="262" width="120" height="50" rx="10" fill="#eef0f8" stroke="#2a3a8c" stroke-width="1.5"/>
+  <text x="360" y="284" text-anchor="middle" fill="#2a3a8c" font-size="14" font-weight="500">Documentation</text>
+  <text x="360" y="300" text-anchor="middle" fill="#3a4aa0" font-size="12">photo evidence</text>
+
+  <rect x="440" y="262" width="140" height="50" rx="10" fill="#eef0f8" stroke="#2a3a8c" stroke-width="1.5"/>
+  <text x="510" y="284" text-anchor="middle" fill="#2a3a8c" font-size="14" font-weight="500">Verification</text>
+  <text x="510" y="300" text-anchor="middle" fill="#3a4aa0" font-size="12">approve / reject</text>
+</svg>

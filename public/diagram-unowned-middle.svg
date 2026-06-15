@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 244" role="img" font-family="Roboto, system-ui, sans-serif">
+  <title>The unowned middle of a compound order's journey</title>
+  <desc>A medication order flows from the EMR, through an operational middle that no system owns, to the cleanroom hood where it is compounded. The EMR and hood are owned systems; the middle is run on whiteboards, paper and memory.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6e6e73"/>
+    </marker>
+  </defs>
+
+  <rect x="45" y="72" width="150" height="92" rx="12" fill="#eef0f8" stroke="#2a3a8c" stroke-width="1.5"/>
+  <text x="120" y="112" text-anchor="middle" fill="#2a3a8c" font-size="16" font-weight="500">EMR</text>
+  <text x="120" y="134" text-anchor="middle" fill="#3a4aa0" font-size="13">order + verify</text>
+
+  <rect x="215" y="58" width="250" height="120" rx="12" fill="#fae2c8" stroke="#b5651d" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="340" y="100" text-anchor="middle" fill="#7a4410" font-size="16" font-weight="500">The unowned middle</text>
+  <text x="340" y="124" text-anchor="middle" fill="#9a5a1d" font-size="13">whiteboards · paper · memory</text>
+  <text x="340" y="146" text-anchor="middle" fill="#9a5a1d" font-size="13">no live record of the order</text>
+
+  <rect x="485" y="72" width="150" height="92" rx="12" fill="#eef0f8" stroke="#2a3a8c" stroke-width="1.5"/>
+  <text x="560" y="112" text-anchor="middle" fill="#2a3a8c" font-size="15" font-weight="500">Cleanroom hood</text>
+  <text x="560" y="134" text-anchor="middle" fill="#3a4aa0" font-size="13">compound</text>
+
+  <line x1="197" y1="118" x2="213" y2="118" stroke="#6e6e73" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="467" y1="118" x2="483" y2="118" stroke="#6e6e73" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="45" y="198" width="132" height="26" rx="13" fill="#eef0f8"/>
+  <text x="111" y="215" text-anchor="middle" fill="#2a3a8c" font-size="13">Owned system</text>
+  <rect x="192" y="198" width="182" height="26" rx="13" fill="#fae2c8"/>
+  <text x="283" y="215" text-anchor="middle" fill="#7a4410" font-size="13">Owned by no system</text>
+</svg>

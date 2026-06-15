@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 248" role="img" font-family="Roboto, system-ui, sans-serif">
+  <title>Astro core order flow</title>
+  <desc>An order arrives from the EMR into the compounding queue, a technician compounds and documents it, then submits for pharmacist verification. Approve releases the dose for pickup; reject returns it to the technician with a reason as a tracked re-work loop.</desc>
+  <defs>
+    <marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6e6e73"/>
+    </marker>
+    <marker id="fr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b5651d"/>
+    </marker>
+  </defs>
+
+  <line x1="144" y1="90" x2="162" y2="90" stroke="#6e6e73" stroke-width="1.5" marker-end="url(#fa)"/>
+  <line x1="292" y1="90" x2="310" y2="90" stroke="#6e6e73" stroke-width="1.5" marker-end="url(#fa)"/>
+  <line x1="462" y1="90" x2="480" y2="90" stroke="#6e6e73" stroke-width="1.5" marker-end="url(#fa)"/>
+  <line x1="557" y1="114" x2="557" y2="178" stroke="#2f7d4f" stroke-width="1.5" marker-end="url(#fa)"/>
+  <path d="M505,114 L505,158 L390,158 L390,116" fill="none" stroke="#b5651d" stroke-width="1.5" marker-end="url(#fr)"/>
+
+  <rect x="40" y="66" width="104" height="48" rx="10" fill="#eef0f8" stroke="#2a3a8c" stroke-width="1.5"/>
+  <text x="92" y="88" text-anchor="middle" fill="#2a3a8c" font-size="14" font-weight="500">Order in</text>
+  <text x="92" y="104" text-anchor="middle" fill="#3a4aa0" font-size="12">from EMR</text>
+
+  <rect x="164" y="66" width="128" height="48" rx="10" fill="#eef0f8" stroke="#2a3a8c" stroke-width="1.5"/>
+  <text x="228" y="88" text-anchor="middle" fill="#2a3a8c" font-size="14" font-weight="500">Compounding queue</text>
+  <text x="228" y="104" text-anchor="middle" fill="#3a4aa0" font-size="12">new</text>
+
+  <rect x="312" y="66" width="150" height="48" rx="10" fill="#eef0f8" stroke="#2a3a8c" stroke-width="1.5"/>
+  <text x="387" y="88" text-anchor="middle" fill="#2a3a8c" font-size="14" font-weight="500">Compound + document</text>
+  <text x="387" y="104" text-anchor="middle" fill="#3a4aa0" font-size="12">technician</text>
+
+  <rect x="482" y="66" width="150" height="48" rx="10" fill="#fae2c8" stroke="#b5651d" stroke-width="1.5"/>
+  <text x="557" y="88" text-anchor="middle" fill="#7a4410" font-size="14" font-weight="500">Pharmacist verifies</text>
+  <text x="557" y="104" text-anchor="middle" fill="#9a5a1d" font-size="12">approve / reject</text>
+
+  <rect x="482" y="180" width="150" height="46" rx="10" fill="#e9f3ec" stroke="#2f7d4f" stroke-width="1.5"/>
+  <text x="557" y="201" text-anchor="middle" fill="#1f6b3f" font-size="14" font-weight="500">Approved</text>
+  <text x="557" y="217" text-anchor="middle" fill="#2f7d4f" font-size="12">ready for pickup</text>
+
+  <text x="565" y="150" text-anchor="start" fill="#2f7d4f" font-size="12">approve</text>
+  <text x="400" y="176" text-anchor="middle" fill="#b5651d" font-size="12">rejected · with reason</text>
+</svg>

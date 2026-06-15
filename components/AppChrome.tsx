@@ -25,7 +25,7 @@ export function AppChrome({
 
   // Guard: the app screens require a signed-in role.
   useEffect(() => {
-    if (!role) router.replace("/");
+    if (!role) router.replace("/start");
   }, [role, router]);
 
   if (!role) return null;

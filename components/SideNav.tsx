@@ -7,6 +7,7 @@ import {
   ClipboardList,
   DoorOpen,
   History,
+  Info,
   RotateCcw,
   LogOut,
   X,
@@ -89,6 +90,18 @@ export function SideNav({ open, onClose }: { open: boolean; onClose: () => void 
               soon
             </span>
           </div>
+          <Link
+            href="/about"
+            onClick={onClose}
+            className={`mt-1 flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium ${
+              pathname === "/about"
+                ? "bg-primary-tint text-primary"
+                : "text-ink hover:bg-canvas"
+            }`}
+          >
+            <Info size={19} />
+            How Astro works
+          </Link>
         </nav>
 
         <div className="border-t border-line px-3 py-3">
@@ -96,7 +109,7 @@ export function SideNav({ open, onClose }: { open: boolean; onClose: () => void 
             onClick={() => {
               resetDemo();
               onClose();
-              router.push("/");
+              router.push("/start");
             }}
             className="mb-1 flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-ink hover:bg-canvas"
           >
@@ -107,7 +120,7 @@ export function SideNav({ open, onClose }: { open: boolean; onClose: () => void 
             onClick={() => {
               logout();
               onClose();
-              router.push("/");
+              router.push("/start");
             }}
             className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-danger hover:bg-danger-tint"
           >
