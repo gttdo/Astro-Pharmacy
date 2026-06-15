@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Astro
 
-## Getting Started
+**An internal pharmacy order-management & sterile-compounding workflow — a functional prototype.**
 
-First, run the development server:
+A medication order makes its most dangerous journey in the gap between two well-built systems: the **EMR** that captures it and the **cleanroom hood** where it's compounded. That operational middle — receive → own → compound → verify → ready-for-pickup — is usually run on whiteboards, paper, and memory. Astro owns that middle, as a **companion to the EMR**: it carries every order through a live queue, a documented worksheet, and a pharmacist verification gate so each dose is owned, tracked, documented, and verified.
+
+This repository is the interactive prototype that accompanies the Astro case study by **Gerardo Vinces**. It runs the full signature loop on mock data — no PHI, no backend.
+
+## The loop you can drive
+
+1. **Sign in** as a Pharmacist (RPh) or Technician.
+2. **Join a cleanroom** (hazardous / non-hazardous, USP <800>-aware).
+3. **Compounding queue** — a live operational board with ownership, status, hazard class, and overdue alerts.
+4. **Worksheet** — document each component with **barcode verification** and photo evidence.
+5. **Verification** — the pharmacist **approves** (released for pickup) or **rejects** (returned to the technician with a reason).
+
+You can switch roles mid-flow to experience both sides of the verification handoff. Start at `/` for the context intro, or `/about` for the information architecture and flows.
+
+## Stack
+
+- [Next.js 16](https://nextjs.org) (App Router) · React 19 · TypeScript
+- Tailwind CSS v4
+- [Zustand](https://github.com/pmndrs/zustand) for the order state machine
+- [lucide-react](https://lucide.dev) icons
+
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Case study & process
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The design research, strategy, and case-study writing that produced this prototype live in [`docs/`](docs/) — gap analysis, competitive landscape & SWOT, thesis + literature validation, information architecture, and the case-study copy.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*Portfolio prototype · mock clinical data, no PHI · designed and built by Gerardo Vinces.*
