@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/*
+  Astro design tokens — derived from the Pharma-Tech Figma file.
+  Material-influenced clinical UI: indigo primary, restrained accents,
+  semantic hazard / status colors. Clarity first, zero decorative noise.
+*/
+@theme {
+  /* brand */
+  --color-primary: #2a3a8c;
+  --color-primary-dark: #1f2d6e;
+  --color-primary-tint: #eef0f8;
+
+  /* neutrals */
+  --color-ink: #1d1d1f;
+  --color-muted: #6e6e73;
+  --color-faint: #9a9aa0;
+  --color-surface: #ffffff;
+  --color-canvas: #ececed;
+  --color-line: #e3e3e7;
+
+  /* semantic accents (shortcut cards) */
+  --color-green: #2f7d4f;
+  --color-green-tint: #e9f3ec;
+  --color-lav: #3a4aa0;
+  --color-lav-tint: #eaecf7;
+  --color-orange: #c5742a;
+  --color-orange-tint: #fbeee2;
+
+  /* status / classification chips */
+  --color-hazard: #b5651d;
+  --color-hazard-tint: #fae2c8;
+  --color-nonhazard: #2e6b8a;
+  --color-nonhazard-tint: #d8e9f2;
+  --color-prn: #8a3fa8;
+  --color-prn-tint: #efd9f5;
+  --color-danger: #d13b3b;
+  --color-danger-tint: #fbe6e6;
+  --color-success: #2f7d4f;
+
+  --font-sans: var(--font-roboto), system-ui, sans-serif;
+
+  --radius-card: 12px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #d7d8dd;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hide scrollbars inside the device frame for a native-app feel */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
